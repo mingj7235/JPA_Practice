@@ -16,6 +16,16 @@ public class OneToOne_ApiController {
         oneToOne_service.save(requestDto);
     }
 
+    @PostMapping ("/member/onetoone/find")
+    public void findbyid (Long id) {
+        oneToOne_service.findPeople(id);
+    }
+
+    @PostMapping ("/locker/onetoone/find")
+    public void findbyidLocker (Long id) {
+        oneToOne_service.findLocker(id);
+    }
+
 //    @PostMapping ("/member/onetoone/print")
 //    public void onoToone_print() {
 //        oneToOne_service.oneToone_find();

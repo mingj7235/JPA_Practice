@@ -2,6 +2,8 @@ package com.joshua.service;
 
 import com.joshua.domain.OneToOne.Locker;
 import com.joshua.domain.OneToOne.People;
+import com.joshua.dto.OneToOne.LockerResponseDto;
+import com.joshua.dto.OneToOne.PeopleResponseDto;
 import com.joshua.dto.OneToOne.PeopleSaveRequestDto;
 import com.joshua.repository.OneToOne.LockerRepository;
 import com.joshua.repository.OneToOne.PeopleRepository;
@@ -23,9 +25,9 @@ public class OneToOne_Service {
     @Transactional
     public Long save (PeopleSaveRequestDto requestDto) throws Exception{
         Locker locker1 = new Locker();
-        locker1.setName("락커1");
+        locker1.setLockerName("락커1");
         Locker locker2 = new Locker();
-        locker2.setName("락커2");
+        locker2.setLockerName("락커2");
         em.persist(locker1);
         em.persist(locker2);
 
@@ -34,11 +36,34 @@ public class OneToOne_Service {
         //locker.ifPresent(entity::setLocker);
 
         entity.setLocker(lockerRepository.findById(requestDto.getLocker_id()).orElseThrow(Exception::new));
+
         //Optional : get() : O ->
         //orElse ('세팅값') -> get을 하려는데, 값이 있으면 get과 같은 응답을주고, null인경우, '세팅값'을 리턴한다.
         //orElseGet('값을 생성하는 메서드가 들어간다. 값도 들어갈수있다.') -> 메모리절약.
         //orElseThrow(exception) : null일때 exception을 던짐
         return peopleRepository.save(entity).getId();
+    }
+
+    @Transactional
+    public PeopleResponseDto findPeople (Long id) {
+        People people = peopleRepository.findById(id).
+                orElseThrow( () -> new IllegalArgumentException ("사용자없음"));
+        System.out.println(people.getPeopleName());
+        System.out.println(people.getGender());
+        System.out.println(people.getLocker().getLockerName());
+        return new PeopleResponseDto(people);
+    }
+
+    @Transactional
+    public LockerResponseDto findLocker (Long id) {
+        Locker locker = lockerRepository.findById(id)
+                .orElseThrow( () -> new IllegalArgumentException ("락커없음"));
+
+        System.out.println(locker.getLockerName());
+        //onetoone 이므로 2명이상이 1개의 locker의 id를 소유하면 예외발생!
+        System.out.println(locker.getPeople().getPeopleName());
+
+        return new LockerResponseDto(locker);
     }
 
 //    private final EntityManager em;
