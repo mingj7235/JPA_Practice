@@ -30,9 +30,10 @@ public class OneToOne_Service {
         em.persist(locker2);
 
         People entity = requestDto.toEntity();
-        Optional<Locker> locker = lockerRepository.findById(requestDto.getLocker_id());
-        locker.ifPresent(entity::setLocker);
-        //entity.setLocker(lockerRepository.findById(requestDto.getLocker_id()).orElseThrow(Exception::new));
+        //Optional<Locker> locker = lockerRepository.findById(requestDto.getLocker_id());
+        //locker.ifPresent(entity::setLocker);
+
+        entity.setLocker(lockerRepository.findById(requestDto.getLocker_id()).orElseThrow(Exception::new));
         //Optional : get() : O ->
         //orElse ('세팅값') -> get을 하려는데, 값이 있으면 get과 같은 응답을주고, null인경우, '세팅값'을 리턴한다.
         //orElseGet('값을 생성하는 메서드가 들어간다. 값도 들어갈수있다.') -> 메모리절약.

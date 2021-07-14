@@ -1,5 +1,6 @@
 package com.joshua.dto.OneToOne;
 
+import com.joshua.domain.OneToOne.Gender;
 import com.joshua.domain.OneToOne.People;
 import lombok.Builder;
 import lombok.Getter;
@@ -12,6 +13,7 @@ import lombok.Setter;
 public class PeopleSaveRequestDto {
 
     private String peopleName;
+    private Gender gender;
     private Long locker_id;
 
 //    @Builder
@@ -23,6 +25,7 @@ public class PeopleSaveRequestDto {
     public People toEntity () {
         return People.builder()
                 .peopleName(peopleName)
+                .gender(gender)
                 .build();
     }
 }
