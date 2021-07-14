@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class ManyToOne_ApiController {
 
     private final ManyToOne_Service manyToOneService;
-    private final OneToOne_Service oneToOne_service;
 
 //    @PostMapping ("/member/join")
 //    public void test () {
@@ -28,8 +27,5 @@ public class ManyToOne_ApiController {
         manyToOneService.manyToOneFind();
     }
 
-    @PostMapping ("/member/onetoone")
-    public void oneToOne() {
-        oneToOne_service.oneToone();
-    }
+
 }
