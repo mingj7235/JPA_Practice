@@ -12,12 +12,13 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @Entity
-public class Product {
+public class Subject {
+
     @Id @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long id;
-    private String productName;
+    private String subjectName;
 
-    @OneToMany (mappedBy = "products")
-    private List<MemberProduct> memberProducts = new ArrayList<>();
+    @OneToMany (mappedBy = "subject")
+    private List<StudentSubject> studentSubjects = new ArrayList<>();
 
 }
