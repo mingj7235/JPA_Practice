@@ -2,6 +2,7 @@ package com.joshua.domain.ManyToOne;
 
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -9,6 +10,7 @@ import javax.persistence.*;
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor
 public class Player {
     @Id @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long id;
@@ -16,7 +18,7 @@ public class Player {
     private String playerAge;
 
     @Enumerated (value = EnumType.STRING)
-    private Postion position;
+    private Position position;
 
     @ManyToOne
     /**
@@ -36,7 +38,7 @@ public class Player {
     private Team team;
 
     @Builder
-    public Player(String playerName, String playerAge, Postion position, Team team) {
+    public Player(String playerName, String playerAge, Position position, Team team) {
         this.playerName = playerName;
         this.playerAge = playerAge;
         this.position = position;

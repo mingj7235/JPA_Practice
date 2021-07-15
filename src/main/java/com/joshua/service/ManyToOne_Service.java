@@ -1,7 +1,9 @@
 package com.joshua.service;
 
 import com.joshua.domain.ManyToOne.Player;
+import com.joshua.domain.ManyToOne.Position;
 import com.joshua.domain.ManyToOne.Team;
+import com.joshua.dto.ManyToOne.PlayerResponseDto;
 import com.joshua.dto.ManyToOne.PlayerSaveRequestDto;
 import com.joshua.repository.ManyToOne.PlayerRepository;
 import com.joshua.repository.ManyToOne.TeamRepository;
@@ -28,6 +30,28 @@ public class ManyToOne_Service {
         entity.setTeam(teamRepository.findById(requestDto.getTeam_id()).
                 orElseThrow( () -> new IllegalArgumentException("해당하는 팀이없어요") ));
         playerRepository.save(entity);
+    }
+
+    @Transactional
+    public PlayerResponseDto findPlayerById (Long id) {
+        Player player = playerRepository.findById(id)
+                .orElseThrow( () -> new IllegalArgumentException("해당 선수 없음"));
+        System.out.println(player.getPlayerName());
+        return new PlayerResponseDto (player);
+    }
+    @Transactional
+    public PlayerResponseDto findPlayerByPostion (Position position) {
+        Player player = playerRepository.findByPosition(position).get();
+
+        return new PlayerResponseDto(player);
+    }
+
+    @Transactional
+    public PlayerResponseDto findPlayerByName (String name) {
+        Player player = playerRepository.findByPlayerName(name)
+                .orElseThrow( () -> new IllegalArgumentException("해당선수업슴"));
+
+        return new PlayerResponseDto(player);
     }
 
 //    @Transactional

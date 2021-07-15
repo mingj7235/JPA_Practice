@@ -1,7 +1,7 @@
 package com.joshua.dto.ManyToOne;
 
 import com.joshua.domain.ManyToOne.Player;
-import com.joshua.domain.ManyToOne.Postion;
+import com.joshua.domain.ManyToOne.Position;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -13,14 +13,14 @@ public class PlayerSaveRequestDto {
 
     private String playerName;
     private String playerAge;
-    private Postion postion;
+    private Position position;
     private Long team_id;
 
     public Player toEntity () {
         return Player.builder()
                 .playerName(playerName)
                 .playerAge(playerAge)
-                .position(postion)
+                .position(position)
                 .build();
     }
 }

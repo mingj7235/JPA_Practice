@@ -1,5 +1,6 @@
 package com.joshua.controller;
 
+import com.joshua.domain.ManyToOne.Position;
 import com.joshua.dto.ManyToOne.PlayerSaveRequestDto;
 import com.joshua.service.ManyToOne_Service;
 import lombok.RequiredArgsConstructor;
@@ -15,6 +16,21 @@ public class ManyToOne_ApiController {
     @PostMapping ("/player/manytoone/save")
     public void savePlayer (PlayerSaveRequestDto requestDto) {
         manyToOneService.savePlayer(requestDto);
+    }
+
+    @PostMapping ("/player/manytoone/findbyid")
+    public void findPlayerById (Long id) {
+        manyToOneService.findPlayerById(id);
+    }
+
+    @PostMapping ("/player/manytoone/findbypostion")
+    public void findPlayerByPostion (Position position) {
+        manyToOneService.findPlayerByPostion(position);
+    }
+
+    @PostMapping ("/player/manytoone/findbyname")
+    public void findPlayerByName (String name) {
+        manyToOneService.findPlayerByName(name);
     }
 
 
