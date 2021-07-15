@@ -24,7 +24,7 @@ public class ManyToOne_ApiController {
         manyToOneService.findPlayerById(id);
     }
 
-    @PostMapping ("/player/manytoone/findbypostion")
+    @PostMapping ("/player/manytoone/findbyposition")
     public void findPlayerByPostion (Position position) {
         manyToOneService.findPlayerByPostion(position);
     }
@@ -52,6 +52,11 @@ public class ManyToOne_ApiController {
     @DeleteMapping ("/team/manytoone/deleteteam/{id}")
     public void deleteTeam (@PathVariable Long id) {
         manyToOneService.deleteTeam(id);
+    }
+
+    @DeleteMapping ("/member/manytoone/deleteplayer/{id}")
+    public void deletePlayer (@PathVariable Long id) {
+        manyToOneService.deletePlayer(id);
     }
 
 

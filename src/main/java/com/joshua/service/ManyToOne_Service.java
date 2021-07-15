@@ -21,14 +21,6 @@ public class ManyToOne_Service {
 
     @Transactional
     public void savePlayer (PlayerSaveRequestDto requestDto) {
-//        Team liverpool = new Team();
-//        liverpool.setTeamName("Liverpool");
-//        em.persist(liverpool);
-//
-//        Team manU = new Team ();
-//        manU.setTeamName("Manchester United");
-//        em.persist(manU);
-
         Player entity = requestDto.toEntity();
         entity.setTeam(teamRepository.findById(requestDto.getTeam_id()).
                 orElseThrow( () -> new IllegalArgumentException("해당하는 팀이없어요") ));
@@ -89,7 +81,12 @@ public class ManyToOne_Service {
     public void deleteTeam (Long id) {
         Team team = teamRepository.findById(id).get();
         teamRepository.delete(team);
+    }
 
+    @Transactional
+    public void deletePlayer (Long id) {
+        Player player = playerRepository.findById(id).get();
+        playerRepository.delete(player);
     }
 
 
