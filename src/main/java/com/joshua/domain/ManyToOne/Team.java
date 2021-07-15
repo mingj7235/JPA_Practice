@@ -21,8 +21,14 @@ public class Team {
     @OneToMany (mappedBy = "team")
     private List<Player> players = new ArrayList<>();
 
+    @OneToOne
+    @JoinColumn (name = "MANAGER_ID")
+    private Manager manager;
+
+
     @Builder
-    public Team(String teamName) {
+    public Team(String teamName, Manager manager) {
         this.teamName = teamName;
+        this.manager = manager;
     }
 }

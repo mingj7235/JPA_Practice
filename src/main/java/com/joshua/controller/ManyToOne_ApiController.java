@@ -1,10 +1,11 @@
 package com.joshua.controller;
 
 import com.joshua.domain.ManyToOne.Position;
-import com.joshua.dto.ManyToOne.PlayerSaveRequestDto;
-import com.joshua.dto.ManyToOne.PlayerUpdateRequestDto;
-import com.joshua.dto.ManyToOne.TeamSaveRequestDto;
-import com.joshua.dto.ManyToOne.TeamUpdateRequestDto;
+import com.joshua.dto.ManyToOne.manager.ManagerSaveRequestDto;
+import com.joshua.dto.ManyToOne.player.PlayerSaveRequestDto;
+import com.joshua.dto.ManyToOne.player.PlayerUpdateRequestDto;
+import com.joshua.dto.ManyToOne.team.TeamSaveRequestDto;
+import com.joshua.dto.ManyToOne.team.TeamUpdateRequestDto;
 import com.joshua.service.ManyToOne_Service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -65,6 +66,10 @@ public class ManyToOne_ApiController {
         manyToOneService.deletePlayer(id);
     }
 
+    @PostMapping ("/manager/manytoone/save")
+    public void saveManager (ManagerSaveRequestDto requestDto) {
+        manyToOneService.saveManager(requestDto);
+    }
 
 //    @PostMapping ("/member/join")
 //    public void test () {

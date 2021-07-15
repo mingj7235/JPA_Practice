@@ -1,9 +1,17 @@
 package com.joshua.service;
 
+import com.joshua.domain.ManyToOne.Manager;
 import com.joshua.domain.ManyToOne.Player;
 import com.joshua.domain.ManyToOne.Position;
 import com.joshua.domain.ManyToOne.Team;
-import com.joshua.dto.ManyToOne.*;
+import com.joshua.dto.ManyToOne.manager.ManagerSaveRequestDto;
+import com.joshua.dto.ManyToOne.player.PlayerResponseDto;
+import com.joshua.dto.ManyToOne.player.PlayerSaveRequestDto;
+import com.joshua.dto.ManyToOne.player.PlayerUpdateRequestDto;
+import com.joshua.dto.ManyToOne.team.TeamResponseDto;
+import com.joshua.dto.ManyToOne.team.TeamSaveRequestDto;
+import com.joshua.dto.ManyToOne.team.TeamUpdateRequestDto;
+import com.joshua.repository.ManyToOne.ManagerRepository;
 import com.joshua.repository.ManyToOne.PlayerRepository;
 import com.joshua.repository.ManyToOne.TeamRepository;
 import lombok.RequiredArgsConstructor;
@@ -18,6 +26,7 @@ public class ManyToOne_Service {
     private final EntityManager em;
     private final PlayerRepository playerRepository;
     private final TeamRepository teamRepository;
+    private final ManagerRepository managerRepository;
 
     @Transactional
     public void savePlayer (PlayerSaveRequestDto requestDto) {
@@ -64,6 +73,8 @@ public class ManyToOne_Service {
     @Transactional
     public void saveTeam (TeamSaveRequestDto requestDto) {
         Team team = requestDto.toEntity();
+        team.setManager(managerRepository.findById(requestDto.getManager_id())
+            .orElseThrow( () -> new IllegalArgumentException("메니저 없음")));
         teamRepository.save(team);
     }
 
@@ -96,6 +107,16 @@ public class ManyToOne_Service {
     public void deletePlayer (Long id) {
         Player player = playerRepository.findById(id).get();
         playerRepository.delete(player);
+    }
+
+    @Transactional
+    public void saveManager (ManagerSaveRequestDto requestDto) {
+        Manager manager = requestDto.toEntity();
+        //set을 할 수가 없다! owner가 아니니까! 당연하다!
+//        manager.setTeam(teamRepository.findById(requestDto.getTeam_id())
+//            .orElseThrow(() -> new IllegalArgumentException("팀이없슴")));
+
+        managerRepository.save(manager);
     }
 
 

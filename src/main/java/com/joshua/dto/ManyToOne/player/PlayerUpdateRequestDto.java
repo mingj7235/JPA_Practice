@@ -1,4 +1,4 @@
-package com.joshua.dto.ManyToOne;
+package com.joshua.dto.ManyToOne.player;
 
 import lombok.Builder;
 import lombok.Getter;

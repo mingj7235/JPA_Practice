@@ -1,4 +1,4 @@
-package com.joshua.dto.ManyToOne;
+package com.joshua.dto.ManyToOne.player;
 
 import com.joshua.domain.ManyToOne.Player;
 import com.joshua.domain.ManyToOne.Position;

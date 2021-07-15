@@ -1,4 +1,4 @@
-package com.joshua.dto.ManyToOne;
+package com.joshua.dto.ManyToOne.team;
 
 import com.joshua.domain.ManyToOne.Team;
 import lombok.Builder;
@@ -9,13 +9,14 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class TeamSaveRequestDto {
+public class TeamUpdateRequestDto {
 
     private String teamName;
 
-    public Team toEntity () {
+    private Team toEntity () {
         return Team.builder()
                 .teamName(teamName)
                 .build();
     }
+
 }
