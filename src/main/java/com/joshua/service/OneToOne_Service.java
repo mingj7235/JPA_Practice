@@ -3,6 +3,7 @@ package com.joshua.service;
 import com.joshua.domain.OneToOne.Locker;
 import com.joshua.domain.OneToOne.People;
 import com.joshua.dto.OneToOne.LockerResponseDto;
+import com.joshua.dto.OneToOne.LockerSaveRequestDto;
 import com.joshua.dto.OneToOne.PeopleResponseDto;
 import com.joshua.dto.OneToOne.PeopleSaveRequestDto;
 import com.joshua.repository.OneToOne.LockerRepository;
@@ -12,7 +13,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -42,6 +42,15 @@ public class OneToOne_Service {
         //orElseGet('값을 생성하는 메서드가 들어간다. 값도 들어갈수있다.') -> 메모리절약.
         //orElseThrow(exception) : null일때 exception을 던짐
         return peopleRepository.save(entity).getId();
+    }
+
+    @Transactional
+    public void saveLocker (LockerSaveRequestDto requestDto) {
+        Locker entity = requestDto.toEntity();
+        entity.setPeople(peopleRepository.findById(requestDto.getPeople_id()).get());
+        lockerRepository.save(entity);
+
+        System.out.println("락커에서 ");
     }
 
     @Transactional
