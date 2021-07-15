@@ -1,5 +1,6 @@
 package com.joshua.domain.ManyToOne;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -20,4 +21,8 @@ public class Team {
     @OneToMany (mappedBy = "team")
     private List<Player> players = new ArrayList<>();
 
+    @Builder
+    public Team(String teamName) {
+        this.teamName = teamName;
+    }
 }

@@ -5,6 +5,8 @@ import com.joshua.domain.ManyToOne.Position;
 import com.joshua.domain.ManyToOne.Team;
 import com.joshua.dto.ManyToOne.PlayerResponseDto;
 import com.joshua.dto.ManyToOne.PlayerSaveRequestDto;
+import com.joshua.dto.ManyToOne.PlayerUpdateRequestDto;
+import com.joshua.dto.ManyToOne.TeamSaveRequestDto;
 import com.joshua.repository.ManyToOne.PlayerRepository;
 import com.joshua.repository.ManyToOne.TeamRepository;
 import lombok.RequiredArgsConstructor;
@@ -22,9 +24,13 @@ public class ManyToOne_Service {
 
     @Transactional
     public void savePlayer (PlayerSaveRequestDto requestDto) {
-        Team liverpool = new Team();
-        liverpool.setTeamName("Liverpool");
-        em.persist(liverpool);
+//        Team liverpool = new Team();
+//        liverpool.setTeamName("Liverpool");
+//        em.persist(liverpool);
+//
+//        Team manU = new Team ();
+//        manU.setTeamName("Manchester United");
+//        em.persist(manU);
 
         Player entity = requestDto.toEntity();
         entity.setTeam(teamRepository.findById(requestDto.getTeam_id()).
@@ -53,6 +59,30 @@ public class ManyToOne_Service {
 
         return new PlayerResponseDto(player);
     }
+
+    @Transactional
+    public void updatePlayer (Long id, PlayerUpdateRequestDto requestDto) {
+
+        Player player = playerRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("해당선수없음"));
+
+        player.setPlayerName(requestDto.getName());
+        player.setTeam(teamRepository.findById(requestDto.getTeam_id()).get());
+
+        playerRepository.save(player);
+    }
+
+    @Transactional
+    public void saveTeam (TeamSaveRequestDto requestDto) {
+        Team team = requestDto.toEntity();
+        teamRepository.save(team);
+    }
+
+    @Transactional
+    public void findPlayersByTeam () {
+
+    }
+
 
 //    @Transactional
 //    public void test () {
