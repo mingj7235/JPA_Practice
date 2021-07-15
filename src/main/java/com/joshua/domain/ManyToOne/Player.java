@@ -1,5 +1,6 @@
 package com.joshua.domain.ManyToOne;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -8,10 +9,14 @@ import javax.persistence.*;
 @Entity
 @Getter
 @Setter
-public class User {
+public class Player {
     @Id @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long id;
-    private String userName;
+    private String playerName;
+    private String playerAge;
+
+    @Enumerated (value = EnumType.STRING)
+    private Postion position;
 
     @ManyToOne
     /**
@@ -29,4 +34,12 @@ public class User {
      *  2. foreignKey(DDL) : 외래키 제약조건을 지정할 수 있다. unique, nullable, insertable, updatable, columnDefinition, table
      */
     private Team team;
+
+    @Builder
+    public Player(String playerName, String playerAge, Postion position, Team team) {
+        this.playerName = playerName;
+        this.playerAge = playerAge;
+        this.position = position;
+        this.team = team;
+    }
 }
