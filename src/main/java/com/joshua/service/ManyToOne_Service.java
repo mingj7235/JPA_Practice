@@ -68,6 +68,15 @@ public class ManyToOne_Service {
     }
 
     @Transactional
+    public void updateTeam (Long id, TeamUpdateRequestDto requestDto) {
+
+        Team team = teamRepository.findById(id)
+                .orElseThrow( () -> new IllegalArgumentException("팀이없어요"));
+
+        team.setTeamName(requestDto.getTeamName());
+    }
+
+    @Transactional
     public TeamResponseDto findPlayersByTeam (Long id) {
         Team team = teamRepository.findById(id).get();
 
