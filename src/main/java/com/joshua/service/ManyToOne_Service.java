@@ -3,10 +3,7 @@ package com.joshua.service;
 import com.joshua.domain.ManyToOne.Player;
 import com.joshua.domain.ManyToOne.Position;
 import com.joshua.domain.ManyToOne.Team;
-import com.joshua.dto.ManyToOne.PlayerResponseDto;
-import com.joshua.dto.ManyToOne.PlayerSaveRequestDto;
-import com.joshua.dto.ManyToOne.PlayerUpdateRequestDto;
-import com.joshua.dto.ManyToOne.TeamSaveRequestDto;
+import com.joshua.dto.ManyToOne.*;
 import com.joshua.repository.ManyToOne.PlayerRepository;
 import com.joshua.repository.ManyToOne.TeamRepository;
 import lombok.RequiredArgsConstructor;
@@ -79,8 +76,14 @@ public class ManyToOne_Service {
     }
 
     @Transactional
-    public void findPlayersByTeam () {
+    public TeamResponseDto findPlayersByTeam (Long id) {
+        Team team = teamRepository.findById(id).get();
 
+        for (Player player : team.getPlayers()) {
+            System.out.println(team.getTeamName() + "의 선수들 : " + player.getPlayerName());
+        }
+
+        return new TeamResponseDto(team);
     }
 
 

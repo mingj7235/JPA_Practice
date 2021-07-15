@@ -47,6 +47,11 @@ public class ManyToOne_ApiController {
         manyToOneService.saveTeam(requestDto);
     }
 
+    @PostMapping ("/team/manytoone/findplayersbyteam")
+    public void findplayersbyteam (Long teamId) {
+        manyToOneService.findPlayersByTeam(teamId);
+    }
+
 
 //    @PostMapping ("/member/join")
 //    public void test () {
