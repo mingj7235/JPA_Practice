@@ -85,6 +85,12 @@ public class ManyToOne_Service {
 
         return new TeamResponseDto(team);
     }
+    @Transactional
+    public void deleteTeam (Long id) {
+        Team team = teamRepository.findById(id).get();
+        teamRepository.delete(team);
+
+    }
 
 
 //    @Transactional

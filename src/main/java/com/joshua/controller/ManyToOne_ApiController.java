@@ -6,10 +6,7 @@ import com.joshua.dto.ManyToOne.PlayerUpdateRequestDto;
 import com.joshua.dto.ManyToOne.TeamSaveRequestDto;
 import com.joshua.service.ManyToOne_Service;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -50,6 +47,11 @@ public class ManyToOne_ApiController {
     @PostMapping ("/team/manytoone/findplayersbyteam")
     public void findplayersbyteam (Long teamId) {
         manyToOneService.findPlayersByTeam(teamId);
+    }
+
+    @DeleteMapping ("/team/manytoone/deleteteam/{id}")
+    public void deleteTeam (@PathVariable Long id) {
+        manyToOneService.deleteTeam(id);
     }
 
 
