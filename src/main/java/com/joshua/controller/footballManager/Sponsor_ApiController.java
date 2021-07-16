@@ -49,10 +49,8 @@ public class Sponsor_ApiController {
             } else {
                 result += teamName + ", ";
             }
-
-
         }
-        System.out.println(sponsorName + "이 지원하는 팀들" + result + "입니다.");
+        System.out.println(sponsorName + " 이(가) 지원하는 팀들은 " + result + "입니다.");
 
     }
 

@@ -51,7 +51,7 @@ public class Team_ApiController {
                 result += sponsorsName + ", ";
             }
         }
-        System.out.println(teamName + "의 스폰서들은 다음과 같습니다. " + result);
+        System.out.println(teamName + "팀의 스폰서들은 " + result + " 입니다.");
 
     }
 

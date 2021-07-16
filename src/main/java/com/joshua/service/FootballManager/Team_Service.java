@@ -16,7 +16,6 @@ import org.springframework.transaction.annotation.Transactional;
 public class Team_Service {
     private final TeamRepository teamRepository;
     private final ManagerRepository managerRepository;
-    private final TeamSponsorRepository teamSponsorRepository;
 
     @Transactional
     public void saveTeam (TeamSaveRequestDto requestDto) {
