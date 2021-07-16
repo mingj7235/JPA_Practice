@@ -1,12 +1,8 @@
 package com.joshua.controller.footballManager;
 
-import com.joshua.domain.FootballManager.Sponsor;
-import com.joshua.domain.FootballManager.Team;
 import com.joshua.domain.FootballManager.TeamSponsor;
-import com.joshua.dto.FootballManager.team.TeamResponseDto;
 import com.joshua.dto.FootballManager.team.TeamSaveRequestDto;
 import com.joshua.dto.FootballManager.team.TeamUpdateRequestDto;
-import com.joshua.repository.FootballManager.TeamRepository;
 import com.joshua.service.FootballManager.Team_Service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
