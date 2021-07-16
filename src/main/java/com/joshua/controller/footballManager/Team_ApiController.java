@@ -14,7 +14,7 @@ public class Team_ApiController {
     private final Team_Service teamService;
 
     @PostMapping ("/fm/team/save")
-    public void saveTeam (@RequestBody TeamSaveRequestDto requestDto) {
+    public void saveTeam (TeamSaveRequestDto requestDto) {
         teamService.saveTeam(requestDto);
     }
 

@@ -9,12 +9,14 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class PlayerUpdateRequestDto {
-    private String name;
+    private String playerName;
+    private String playerAge;
     private Long team_id;
 
     @Builder
-    public PlayerUpdateRequestDto(String name, Long team_id) {
-        this.name = name;
+    public PlayerUpdateRequestDto(String playerName, String playerAge, Long team_id) {
+        this.playerName = playerName;
+        this.playerAge = playerAge;
         this.team_id = team_id;
     }
 }

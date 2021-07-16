@@ -66,7 +66,7 @@ public class ManyToOne_Service {
         Player player = playerRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("해당선수없음"));
 
-        player.setPlayerName(requestDto.getName());
+        player.setPlayerName(requestDto.getPlayerName());
         player.setTeam(teamRepository.findById(requestDto.getTeam_id()).get());
 
         playerRepository.save(player);
