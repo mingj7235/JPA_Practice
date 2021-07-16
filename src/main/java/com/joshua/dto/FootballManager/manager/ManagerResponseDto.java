@@ -9,12 +9,12 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class ManagerResponseDtd {
+public class ManagerResponseDto {
     private String managerName;
     private String managerAge;
     private Team team;
 
-    public ManagerResponseDtd (Manager entity) {
+    public ManagerResponseDto(Manager entity) {
         this.managerName = entity.getManagerName();
         this.managerAge = entity.getManagerAge();
         this.team = entity.getTeam();

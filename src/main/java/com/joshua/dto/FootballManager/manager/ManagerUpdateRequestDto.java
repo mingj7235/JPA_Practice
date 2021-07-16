@@ -8,16 +8,16 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class ManagerSaveRequestDto {
-
+public class ManagerUpdateRequestDto {
     private String managerName;
     private String managerAge;
-    //private Long team_id;
 
-    public Manager toEntity () {
-        return Manager.builder()
-                .managerName(managerName)
-                .managerAge(managerAge)
-                .build();
-    }
+//    public Manager toEntity () {
+//        return Manager.builder()
+//                .managerName(managerName)
+//                .managerAge(managerAge)
+//                .build();
+//    }
+
+
 }

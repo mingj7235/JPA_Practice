@@ -4,7 +4,7 @@ import com.joshua.domain.FootballManager.Manager;
 import com.joshua.domain.FootballManager.Player;
 import com.joshua.domain.FootballManager.Position;
 import com.joshua.domain.FootballManager.Team;
-import com.joshua.dto.FootballManager.manager.ManagerResponseDtd;
+import com.joshua.dto.FootballManager.manager.ManagerResponseDto;
 import com.joshua.dto.FootballManager.manager.ManagerSaveRequestDto;
 import com.joshua.dto.FootballManager.player.PlayerResponseDto;
 import com.joshua.dto.FootballManager.player.PlayerSaveRequestDto;
@@ -133,10 +133,10 @@ public class ManyToOne_Service {
     }
 
     @Transactional
-    public ManagerResponseDtd findManager (Long id) {
+    public ManagerResponseDto findManager (Long id) {
         Manager manager = managerRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("찾는 감독이 없습니다."));
-        return new ManagerResponseDtd(manager);
+        return new ManagerResponseDto(manager);
     }
 
 

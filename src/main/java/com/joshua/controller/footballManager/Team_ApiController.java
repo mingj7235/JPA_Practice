@@ -30,6 +30,7 @@ public class Team_ApiController {
 
     @PostMapping ("/fm/team/findteam/{id}")
     public void findTeam (@PathVariable Long id) {
+        //접근할 수 잇는 것들 접근해보기
         teamService.findTeam(id);
     }
 
