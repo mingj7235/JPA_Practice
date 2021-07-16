@@ -1,7 +1,7 @@
-package com.joshua.dto.ManyToOne.team;
+package com.joshua.dto.FootballManager.team;
 
-import com.joshua.domain.ManyToOne.Player;
-import com.joshua.domain.ManyToOne.Team;
+import com.joshua.domain.FootballManager.Player;
+import com.joshua.domain.FootballManager.Team;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

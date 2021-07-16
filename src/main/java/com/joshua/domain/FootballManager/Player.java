@@ -1,4 +1,4 @@
-package com.joshua.domain.ManyToOne;
+package com.joshua.domain.FootballManager;
 
 import lombok.Builder;
 import lombok.Getter;

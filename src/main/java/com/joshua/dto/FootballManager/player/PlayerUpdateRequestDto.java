@@ -1,4 +1,4 @@
-package com.joshua.dto.ManyToOne.player;
+package com.joshua.dto.FootballManager.player;
 
 import lombok.Builder;
 import lombok.Getter;

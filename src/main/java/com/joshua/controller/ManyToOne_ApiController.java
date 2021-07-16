@@ -1,11 +1,11 @@
 package com.joshua.controller;
 
-import com.joshua.domain.ManyToOne.Position;
-import com.joshua.dto.ManyToOne.manager.ManagerSaveRequestDto;
-import com.joshua.dto.ManyToOne.player.PlayerSaveRequestDto;
-import com.joshua.dto.ManyToOne.player.PlayerUpdateRequestDto;
-import com.joshua.dto.ManyToOne.team.TeamSaveRequestDto;
-import com.joshua.dto.ManyToOne.team.TeamUpdateRequestDto;
+import com.joshua.domain.FootballManager.Position;
+import com.joshua.dto.FootballManager.manager.ManagerSaveRequestDto;
+import com.joshua.dto.FootballManager.player.PlayerSaveRequestDto;
+import com.joshua.dto.FootballManager.player.PlayerUpdateRequestDto;
+import com.joshua.dto.FootballManager.team.TeamSaveRequestDto;
+import com.joshua.dto.FootballManager.team.TeamUpdateRequestDto;
 import com.joshua.service.ManyToOne_Service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
