@@ -32,6 +32,7 @@ public class Team_Service {
                 .orElseThrow(() -> new IllegalArgumentException("찾는 팀 없슈"));
 
         team.setTeamName(requestDto.getTeamName());
+        team.setLeague(requestDto.getLeague());
         team.setManager(managerRepository.findById(requestDto.getManager_id())
                 .orElseThrow(() -> new IllegalArgumentException("찾는 매니저 없슈")));
     }

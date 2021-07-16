@@ -5,6 +5,7 @@ import com.joshua.domain.FootballManager.Team;
 import com.joshua.domain.FootballManager.TeamSponsor;
 import com.joshua.dto.FootballManager.sponsor.SponsorSaveRequestDto;
 import com.joshua.dto.FootballManager.sponsor.SponsorUpdateRequestDto;
+import com.joshua.dto.FootballManager.team.TeamResponseDto;
 import com.joshua.service.FootballManager.Sponsor_Service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -48,6 +49,8 @@ public class Sponsor_ApiController {
             } else {
                 result += teamName + ", ";
             }
+
+
         }
         System.out.println(sponsorName + "이 지원하는 팀들" + result + "입니다.");
 

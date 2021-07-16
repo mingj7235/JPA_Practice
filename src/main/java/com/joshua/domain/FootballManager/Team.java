@@ -18,6 +18,9 @@ public class Team {
     private Long id;
     private String teamName;
 
+    @Enumerated (value = EnumType.STRING)
+    private League league;
+
     @OneToMany (mappedBy = "team")
     private List<Player> players = new ArrayList<>();
 
@@ -30,8 +33,9 @@ public class Team {
 
 
     @Builder
-    public Team(String teamName, Manager manager) {
+    public Team(String teamName, League league, Manager manager) {
         this.teamName = teamName;
+        this.league = league;
         this.manager = manager;
     }
 }
