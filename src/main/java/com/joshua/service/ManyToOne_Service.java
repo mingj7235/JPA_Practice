@@ -93,17 +93,20 @@ public class ManyToOne_Service {
     public TeamResponseDto findPlayersByTeam (Long id) {
         Team team = teamRepository.findById(id).get();
         List<Player> players = team.getPlayers();
-
-        System.out.println("선수들 리스트");
+        String result = "";
         for (int i = 0; i < players.size(); i ++) {
-            Player player = team.getPlayers().get(i);
-            System.out.println(player + ",");
-        }
+            String player = team.getPlayers().get(i).getPlayerName();
+            if (i == players.size()-1) {
+                result += player + "";
 
+            } else {
+                result += player + ",";
+            }
+        }
+        System.out.println(team.getTeamName() + "팀의 선수들 :" + result);
 //        for (Player player : team.getPlayers()) {
 //            System.out.println(team.getTeamName() + "의 선수들 : " + player.getPlayerName());
 //        }
-
         return new TeamResponseDto(team);
     }
     @Transactional
@@ -132,7 +135,6 @@ public class ManyToOne_Service {
     public ManagerResponseDtd findManager (Long id) {
         Manager manager = managerRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("찾는 감독이 없습니다."));
-
         return new ManagerResponseDtd(manager);
     }
 
