@@ -85,8 +85,9 @@ public class ManyToOne_Service {
 
         Team team = teamRepository.findById(id)
                 .orElseThrow( () -> new IllegalArgumentException("팀이없어요"));
-
         team.setTeamName(requestDto.getTeamName());
+        team.setManager(managerRepository.findById(requestDto.getManager_id())
+              .orElseThrow(() -> new IllegalArgumentException("매니저가 없어요")));
     }
 
     @Transactional

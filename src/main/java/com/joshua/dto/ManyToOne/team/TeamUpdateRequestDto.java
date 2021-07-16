@@ -12,11 +12,11 @@ import lombok.Setter;
 public class TeamUpdateRequestDto {
 
     private String teamName;
+    private Long manager_id;
 
-    private Team toEntity () {
-        return Team.builder()
-                .teamName(teamName)
-                .build();
+    @Builder
+    public TeamUpdateRequestDto(String teamName, Long manager_id) {
+        this.teamName = teamName;
+        this.manager_id = manager_id;
     }
-
 }
