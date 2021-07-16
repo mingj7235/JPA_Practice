@@ -25,6 +25,9 @@ public class Team {
     @JoinColumn (name = "MANAGER_ID")
     private Manager manager;
 
+    @OneToMany (mappedBy = "team")
+    private List<TeamSponsor> teamSponsors = new ArrayList<>();
+
 
     @Builder
     public Team(String teamName, Manager manager) {
