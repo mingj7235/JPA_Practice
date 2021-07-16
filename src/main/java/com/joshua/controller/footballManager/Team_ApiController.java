@@ -1,11 +1,17 @@
 package com.joshua.controller.footballManager;
 
+import com.joshua.domain.FootballManager.Sponsor;
+import com.joshua.domain.FootballManager.Team;
+import com.joshua.domain.FootballManager.TeamSponsor;
 import com.joshua.dto.FootballManager.team.TeamResponseDto;
 import com.joshua.dto.FootballManager.team.TeamSaveRequestDto;
 import com.joshua.dto.FootballManager.team.TeamUpdateRequestDto;
+import com.joshua.repository.FootballManager.TeamRepository;
 import com.joshua.service.FootballManager.Team_Service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -30,8 +36,27 @@ public class Team_ApiController {
 
     @PostMapping ("/fm/team/findteam/{id}")
     public void findTeam (@PathVariable Long id) {
-        //접근할 수 잇는 것들 접근해보기
         teamService.findTeam(id);
+
+    }
+
+    @PostMapping ("/fm/team/findsponsorbyteam/{id}")
+    public void findSponsorByTeam (@PathVariable Long id) {
+        String teamName = teamService.findTeam(id).getTeamName();
+        List<TeamSponsor> sponsors = teamService.findTeam(id).getTeamSponsors();
+
+        String result = "";
+
+        for (int i = 0; i < sponsors.size() ; i++) {
+            String sponsorsName = sponsors.get(i).getSponsor().getSponsorName();
+            if (i == sponsors.size() -1) {
+                result += sponsorsName;
+            } else {
+                result += sponsorsName + ", ";
+            }
+        }
+        System.out.println(teamName + "의 스폰서들은 다음과 같습니다. " + result);
+
     }
 
 }

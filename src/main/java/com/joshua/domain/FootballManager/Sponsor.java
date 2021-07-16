@@ -1,5 +1,6 @@
 package com.joshua.domain.FootballManager;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -23,4 +24,9 @@ public class Sponsor {
     @OneToMany (mappedBy = "sponsor")
     private List<TeamSponsor> teamSponsors = new ArrayList<>();
 
+    @Builder
+    public Sponsor(String sponsorName, Integer budget) {
+        this.sponsorName = sponsorName;
+        this.budget = budget;
+    }
 }
