@@ -1,4 +1,4 @@
-package com.joshua.controller;
+package com.joshua.controller.practiceAPI;
 
 import com.joshua.dto.OneToOne.LockerSaveRequestDto;
 import com.joshua.dto.OneToOne.PeopleSaveRequestDto;

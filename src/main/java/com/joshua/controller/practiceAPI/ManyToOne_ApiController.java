@@ -1,4 +1,4 @@
-package com.joshua.controller;
+package com.joshua.controller.practiceAPI;
 
 import com.joshua.domain.FootballManager.Position;
 import com.joshua.dto.FootballManager.manager.ManagerSaveRequestDto;

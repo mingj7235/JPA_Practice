@@ -1,4 +1,4 @@
-package com.joshua.controller;
+package com.joshua.controller.practiceAPI;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

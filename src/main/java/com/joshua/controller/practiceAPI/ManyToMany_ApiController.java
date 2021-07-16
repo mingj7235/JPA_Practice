@@ -1,4 +1,4 @@
-package com.joshua.controller;
+package com.joshua.controller.practiceAPI;
 
 import com.joshua.service.ManyToMany_Service;
 import lombok.RequiredArgsConstructor;
