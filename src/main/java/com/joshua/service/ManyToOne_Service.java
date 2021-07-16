@@ -4,6 +4,7 @@ import com.joshua.domain.ManyToOne.Manager;
 import com.joshua.domain.ManyToOne.Player;
 import com.joshua.domain.ManyToOne.Position;
 import com.joshua.domain.ManyToOne.Team;
+import com.joshua.dto.ManyToOne.manager.ManagerResponseDtd;
 import com.joshua.dto.ManyToOne.manager.ManagerSaveRequestDto;
 import com.joshua.dto.ManyToOne.player.PlayerResponseDto;
 import com.joshua.dto.ManyToOne.player.PlayerSaveRequestDto;
@@ -19,6 +20,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -90,10 +92,17 @@ public class ManyToOne_Service {
     @Transactional
     public TeamResponseDto findPlayersByTeam (Long id) {
         Team team = teamRepository.findById(id).get();
+        List<Player> players = team.getPlayers();
 
-        for (Player player : team.getPlayers()) {
-            System.out.println(team.getTeamName() + "의 선수들 : " + player.getPlayerName());
+        System.out.println("선수들 리스트");
+        for (int i = 0; i < players.size(); i ++) {
+            Player player = team.getPlayers().get(i);
+            System.out.println(player + ",");
         }
+
+//        for (Player player : team.getPlayers()) {
+//            System.out.println(team.getTeamName() + "의 선수들 : " + player.getPlayerName());
+//        }
 
         return new TeamResponseDto(team);
     }
@@ -117,6 +126,14 @@ public class ManyToOne_Service {
 //            .orElseThrow(() -> new IllegalArgumentException("팀이없슴")));
 
         managerRepository.save(manager);
+    }
+
+    @Transactional
+    public ManagerResponseDtd findManager (Long id) {
+        Manager manager = managerRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("찾는 감독이 없습니다."));
+
+        return new ManagerResponseDtd(manager);
     }
 
 
