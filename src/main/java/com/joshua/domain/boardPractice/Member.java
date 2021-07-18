@@ -12,7 +12,6 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @Entity
-@Table (name = "practiceMember")
 public class Member {
 
     @Id @GeneratedValue (strategy = GenerationType.IDENTITY)

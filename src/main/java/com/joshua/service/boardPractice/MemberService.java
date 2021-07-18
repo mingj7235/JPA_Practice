@@ -10,10 +10,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 
-public class Member_Service {
+public class MemberService {
     private final MemberRepository memberRepository;
     @Autowired
-    public Member_Service(MemberRepository memberRepository) {
+    public MemberService(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
     }
 

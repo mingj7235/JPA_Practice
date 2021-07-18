@@ -1,5 +1,6 @@
 package com.joshua.domain.boardPractice;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -25,4 +26,10 @@ public class Reply {
     @JoinColumn (name = "MEMBER_ID")
     private Member member;
 
+    @Builder
+    public Reply(String replyContent, Board board, Member member) {
+        this.replyContent = replyContent;
+        this.board = board;
+        this.member = member;
+    }
 }
