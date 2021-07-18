@@ -4,6 +4,7 @@ import com.joshua.dto.boardPractice.board.BoardSaveRequestDto;
 import com.joshua.service.boardPractice.BoardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
@@ -15,5 +16,10 @@ public class BoardAPIController {
     @PostMapping ("/board/save")
     public void saveBoard (BoardSaveRequestDto requestDto) {
         boardService.saveBoard(requestDto);
+    }
+
+    @PostMapping ("/board/findReplyById/{id}")
+    public void findReplyById (@PathVariable Long id) {
+        boardService.findBoardById(id);
     }
 }
