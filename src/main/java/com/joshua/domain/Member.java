@@ -10,7 +10,7 @@ import java.util.Date;
 @Getter
 @Setter
 @NoArgsConstructor
-@Entity
+//@Entity
 public class Member {
 
     @Id
