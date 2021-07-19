@@ -60,7 +60,7 @@ public class BoardService {
     }
 
     public Page<Board> getAllBoards (Integer page) {
-        PageRequest pageRequest = PageRequest.of(page, 10, Sort.by("id").descending());
+        PageRequest pageRequest = PageRequest.of(page, 10 /*, Sort.by("id").descending()*/);
         return boardRepository.findAll(pageRequest);
     }
 }

@@ -53,9 +53,11 @@ public class BoardAPIController {
                 .orElseThrow(() -> new IllegalArgumentException("게시판 없슴"));
         //이건 param으로 받은 페이지의 첫번째 게시판의 이름이고..
         String boardTitle = board.getBoardTitle();
+        Long boardId = board.getId();
 
         String result = "";
-        result += "총 페이지 : " + totalPage  + page + "번 첫번째 게시판 이름 " + boardTitle;
+        result += "총 페이지 : " + totalPage  +" 페이지/ "+ (page+1) + "번 첫번째 게시판 번호 :  " + boardId
+                +" 게시판 이름 : "+ boardTitle;
 
         return result;
     }
