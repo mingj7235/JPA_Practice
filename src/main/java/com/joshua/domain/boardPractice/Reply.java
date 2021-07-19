@@ -18,11 +18,11 @@ public class Reply {
 
     private String replyContent;
 
-    @ManyToOne (cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn (name = "BOARD_ID")
     private Board board;
 
-    @ManyToOne (cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn (name = "MEMBER_ID")
     private Member member;
 

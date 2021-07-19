@@ -20,10 +20,10 @@ public class Member {
     private String memberName;
     private Integer memberAge;
 
-    @OneToMany (mappedBy = "member")
+    @OneToMany (mappedBy = "member", cascade = CascadeType.ALL)
     private List<Board> boards;
 
-    @OneToMany (mappedBy = "member")
+    @OneToMany (mappedBy = "member", cascade = CascadeType.ALL)
     private List<Reply> replies;
 
     @Builder
