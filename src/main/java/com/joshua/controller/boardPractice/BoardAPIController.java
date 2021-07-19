@@ -1,19 +1,13 @@
 package com.joshua.controller.boardPractice;
 
-import com.joshua.domain.boardPractice.Board;
+import com.joshua.dto.boardPractice.board.BoardResponseDto;
 import com.joshua.dto.boardPractice.board.BoardSaveRequestDto;
 import com.joshua.dto.boardPractice.board.BoardUpdateRequestDto;
-import com.joshua.repository.boardPractice.BoardRepository;
 import com.joshua.service.boardPractice.BoardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Optional;
-import java.util.stream.Collector;
 
 @RestController
 @RequiredArgsConstructor
@@ -21,17 +15,17 @@ public class BoardAPIController {
 
     private final BoardService boardService;
 
-    @PostMapping ("/board/save")
+    @PostMapping ("/boards")
     public void saveBoard (BoardSaveRequestDto requestDto) {
         boardService.saveBoard(requestDto);
     }
 
-    @PostMapping ("/board/findReplyById/{id}")
+    @GetMapping ("/boards/{id}/replies/{replyId}")
     public void findReplyById (@PathVariable Long id) {
-        boardService.findBoardById(id);
+        boardService.findReplyById(id);
     }
 
-    @PutMapping ("/board/update/{id}")
+    @PutMapping ("/boards/{id}")
     public void updateBoard (@PathVariable Long id, BoardUpdateRequestDto requestDto) {
         boardService.updateBoard(id, requestDto);
     }
@@ -42,8 +36,8 @@ public class BoardAPIController {
     }
 
     @GetMapping ("/board")
-    public Page<Board> getPage (Pageable pageable) {
-        Page<Board> allBoards = boardService.getAllBoards(pageable);
+    public Page<BoardResponseDto> getPage (Pageable pageable) {
+        Page<BoardResponseDto> allBoards = boardService.getAllBoards(pageable);
 
 //        int totalPage = allBoards.getTotalPages();
 //

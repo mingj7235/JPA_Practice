@@ -11,14 +11,17 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class ReplyResponseDto {
+    private Long boardId;
+    private Long replyId;
     private String replyContent;
-    private Board board;
-    private Member member;
+    private Long memberId;
+    private String memberName;
 
     public ReplyResponseDto (Reply entity) {
         this.replyContent = entity.getReplyContent();
-        this.board = entity.getBoard();
-        this.member = entity. getMember();
+        this.boardId = entity.getBoard().getId();
+        this.memberId = entity.getMember().getId();
+        this.memberName = entity.getMember().getMemberName();
     }
 
 }

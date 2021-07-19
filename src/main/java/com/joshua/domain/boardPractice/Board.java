@@ -1,5 +1,6 @@
 package com.joshua.domain.boardPractice;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Builder;
 import lombok.Getter;
@@ -27,7 +28,8 @@ public class Board {
     @JoinColumn (name = "MEMBER_ID")
     private Member member;
 
-    @JsonManagedReference
+    //@JsonManagedReference
+    //@JsonBackReference
     @OneToMany (mappedBy = "board", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Reply> replies;
 
@@ -36,6 +38,6 @@ public class Board {
         this.boardTitle = boardTitle;
         this.boardContent = boardContent;
         this.member = member;
-        //this.replies = replies;
+        this.replies = replies;
     }
 }

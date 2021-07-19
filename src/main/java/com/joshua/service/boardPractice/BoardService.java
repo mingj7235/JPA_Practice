@@ -5,10 +5,12 @@ import com.joshua.domain.boardPractice.Reply;
 import com.joshua.dto.boardPractice.board.BoardResponseDto;
 import com.joshua.dto.boardPractice.board.BoardSaveRequestDto;
 import com.joshua.dto.boardPractice.board.BoardUpdateRequestDto;
+import com.joshua.dto.boardPractice.page.PageDto;
 import com.joshua.repository.boardPractice.BoardRepository;
 import com.joshua.repository.boardPractice.MemberRepository;
 import com.joshua.repository.boardPractice.ReplyRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.core.convert.converter.Converter;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -50,19 +52,20 @@ public class BoardService {
         boardRepository.delete(board);
     }
 
-    public BoardResponseDto findBoardById (Long id) {
+    public BoardResponseDto findReplyById(Long id) {
         Board board = boardRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("찾는 게시판이없습니다."));
 
         System.out.println(board.getBoardTitle() + "의 댓글 목록 ");
-//        for (Reply reply : board.getReplies()) {
-//            System.out.println(reply.getReplyContent() + " / " + reply.getMember().getMemberName());
-//        }
+        for (Reply reply : board.getReplies()) {
+            System.out.println(reply.getReplyContent() + " / " + reply.getMember().getMemberName());
+        }
 
         return new BoardResponseDto(board);
     }
 
-    public Page<Board> getAllBoards (Pageable pageable) {
-        return boardRepository.findAll(pageable);
+    public Page<BoardResponseDto> getAllBoards (Pageable pageable) {
+        return boardRepository.findAll(pageable)
+                .map(BoardResponseDto::new);
     }
 }
