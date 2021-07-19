@@ -28,7 +28,7 @@ public class MemberAPIController {
     }
 
     @PostMapping ("/member/findMember/{id}")
-    public void findMember (Long id) {
+    public void findMember (@PathVariable Long id) {
         memberService.findMemberById(id);
     }
 

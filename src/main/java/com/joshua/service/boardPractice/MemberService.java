@@ -46,6 +46,7 @@ public class MemberService {
     public MemberResponseDto findMemberById (Long id)  {
         Member member = memberRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("찾는 멤버가 없어요"));
+        System.out.println(member.getMemberName() + ", " + member.getMemberAge());
         return new MemberResponseDto(member);
     }
 
