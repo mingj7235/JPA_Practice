@@ -11,6 +11,7 @@ import com.joshua.repository.boardPractice.ReplyRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -59,7 +60,7 @@ public class BoardService {
     }
 
     public Page<Board> getAllBoards (Integer page) {
-        PageRequest pageRequest = PageRequest.of(page, 10);
+        PageRequest pageRequest = PageRequest.of(page, 10, Sort.by("id").descending());
         return boardRepository.findAll(pageRequest);
     }
 }

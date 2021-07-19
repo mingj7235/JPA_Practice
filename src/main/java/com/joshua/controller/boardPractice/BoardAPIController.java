@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
+import java.util.stream.Collector;
 
 @RestController
 @RequiredArgsConstructor
@@ -45,9 +46,12 @@ public class BoardAPIController {
         Page<Board> allBoards = boardService.getAllBoards(page);
 
         int totalPage = allBoards.getTotalPages();
+
+        //페이지에 있는 전체 게시판을 불러오려면...?
+
         Board board = allBoards.get().findAny()
                 .orElseThrow(() -> new IllegalArgumentException("게시판 없슴"));
-
+        //이건 param으로 받은 페이지의 첫번째 게시판의 이름이고..
         String boardTitle = board.getBoardTitle();
 
         String result = "";
