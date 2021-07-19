@@ -4,11 +4,11 @@ import com.joshua.dto.boardPractice.reply.ReplyResponseDto;
 import com.joshua.dto.boardPractice.reply.ReplySaveRequestDto;
 import com.joshua.service.boardPractice.ReplyService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
 @RequiredArgsConstructor
 public class ReplyAPIController {
     private final ReplyService replyService;

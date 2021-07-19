@@ -4,6 +4,7 @@ import com.joshua.domain.boardPractice.Board;
 import com.joshua.domain.boardPractice.Reply;
 import com.joshua.dto.boardPractice.board.BoardResponseDto;
 import com.joshua.dto.boardPractice.board.BoardSaveRequestDto;
+import com.joshua.dto.boardPractice.board.BoardUpdateRequestDto;
 import com.joshua.repository.boardPractice.BoardRepository;
 import com.joshua.repository.boardPractice.MemberRepository;
 import com.joshua.repository.boardPractice.ReplyRepository;
@@ -27,12 +28,29 @@ public class BoardService {
         return boardRepository.save(board).getId();
     }
 
+    public Long updateBoard (Long id, BoardUpdateRequestDto requestDto) {
+        Board board = boardRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("찾는 게시판 없습니다."));
+
+        board.setBoardTitle(requestDto.getBoardTitle());
+        board.setBoardContent(requestDto.getBoardContent());
+
+        return boardRepository.save(board).getId();
+    }
+
+    public void deleteBoard (Long id) {
+        Board board = boardRepository.findById(id)
+                .orElseThrow(()-> new IllegalArgumentException("찾는 게시판 없슴"));
+        boardRepository.delete(board);
+    }
+
     public BoardResponseDto findBoardById (Long id) {
         Board board = boardRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("찾는 게시판이없습니다."));
 
+        System.out.println(board.getBoardTitle() + "의 댓글 목록 ");
         for (Reply reply : board.getReplies()) {
-            System.out.println(reply.getReplyContent());
+            System.out.println(reply.getReplyContent() + " / " + reply.getMember().getMemberName());
         }
 
         return new BoardResponseDto(board);
