@@ -11,9 +11,12 @@ import com.joshua.repository.boardPractice.ReplyRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -34,7 +37,7 @@ public class BoardService {
     public Long updateBoard (Long id, BoardUpdateRequestDto requestDto) {
         Board board = boardRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("찾는 게시판 없습니다."));
-
+//        board.setId(1000L);
         board.setBoardTitle(requestDto.getBoardTitle());
         board.setBoardContent(requestDto.getBoardContent());
 
@@ -52,15 +55,14 @@ public class BoardService {
                 .orElseThrow(() -> new IllegalArgumentException("찾는 게시판이없습니다."));
 
         System.out.println(board.getBoardTitle() + "의 댓글 목록 ");
-        for (Reply reply : board.getReplies()) {
-            System.out.println(reply.getReplyContent() + " / " + reply.getMember().getMemberName());
-        }
+//        for (Reply reply : board.getReplies()) {
+//            System.out.println(reply.getReplyContent() + " / " + reply.getMember().getMemberName());
+//        }
 
         return new BoardResponseDto(board);
     }
 
-    public Page<Board> getAllBoards (Integer page) {
-        PageRequest pageRequest = PageRequest.of(page, 10 /*, Sort.by("id").descending()*/);
-        return boardRepository.findAll(pageRequest);
+    public Page<Board> getAllBoards (Pageable pageable) {
+        return boardRepository.findAll(pageable);
     }
 }

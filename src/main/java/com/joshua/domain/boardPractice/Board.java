@@ -1,5 +1,6 @@
 package com.joshua.domain.boardPractice;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,6 +16,7 @@ import java.util.List;
 public class Board {
 
     @Id @GeneratedValue (strategy = GenerationType.IDENTITY)
+    @Column (updatable = false)
     private Long id;
 
     private String boardTitle;
@@ -25,7 +27,8 @@ public class Board {
     @JoinColumn (name = "MEMBER_ID")
     private Member member;
 
-    @OneToMany (mappedBy = "board", cascade = CascadeType.ALL)
+    @JsonManagedReference
+    @OneToMany (mappedBy = "board", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Reply> replies;
 
     @Builder
@@ -33,6 +36,6 @@ public class Board {
         this.boardTitle = boardTitle;
         this.boardContent = boardContent;
         this.member = member;
-        this.replies = replies;
+        //this.replies = replies;
     }
 }

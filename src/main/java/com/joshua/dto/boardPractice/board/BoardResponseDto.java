@@ -21,7 +21,7 @@ public class BoardResponseDto {
     public BoardResponseDto (Board entity) {
         this.boardTitle = entity.getBoardTitle();
         this.boardContent = entity.getBoardContent();
-        this.member = entity.getMember();
-        this.replies =entity.getReplies();
+//        this.member = entity.getMember();
+//        this.replies =entity.getReplies();
     }
 }

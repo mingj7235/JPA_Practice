@@ -21,8 +21,8 @@ public class MemberResponseDto {
     public MemberResponseDto (Member entity) {
         this.memberName = entity.getMemberName();
         this.memberAge = entity.getMemberAge();
-        this.boards = entity.getBoards();
-        this.replies = entity.getReplies();
+//        this.boards = entity.getBoards();
+//        this.replies = entity.getReplies();
 
     }
 }

@@ -20,17 +20,17 @@ public class Member {
     private String memberName;
     private Integer memberAge;
 
-    @OneToMany (mappedBy = "member", cascade = CascadeType.ALL)
-    private List<Board> boards;
-
-    @OneToMany (mappedBy = "member", cascade = CascadeType.ALL)
-    private List<Reply> replies;
+//    @OneToMany (mappedBy = "member", cascade = CascadeType.ALL)
+//    private List<Board> boards;
+//
+//    @OneToMany (mappedBy = "member", cascade = CascadeType.ALL)
+//    private List<Reply> replies;
 
     @Builder
     public Member(String memberName, Integer memberAge, List<Board> boards, List<Reply> replies) {
         this.memberName = memberName;
         this.memberAge = memberAge;
-        this.boards = boards;
-        this.replies = replies;
+//        this.boards = boards;
+//        this.replies = replies;
     }
 }

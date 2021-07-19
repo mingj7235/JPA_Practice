@@ -1,5 +1,6 @@
 package com.joshua.domain.boardPractice;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,11 +19,12 @@ public class Reply {
 
     private String replyContent;
 
-    @ManyToOne
+    @JsonBackReference
+    @ManyToOne (fetch = FetchType.LAZY)
     @JoinColumn (name = "BOARD_ID")
     private Board board;
 
-    @ManyToOne
+    @ManyToOne (fetch = FetchType.LAZY)
     @JoinColumn (name = "MEMBER_ID")
     private Member member;
 
