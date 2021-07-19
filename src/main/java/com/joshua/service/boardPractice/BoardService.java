@@ -9,6 +9,8 @@ import com.joshua.repository.boardPractice.BoardRepository;
 import com.joshua.repository.boardPractice.MemberRepository;
 import com.joshua.repository.boardPractice.ReplyRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -54,5 +56,10 @@ public class BoardService {
         }
 
         return new BoardResponseDto(board);
+    }
+
+    public Page<Board> getAllBoards (Integer page) {
+        PageRequest pageRequest = PageRequest.of(page, 10);
+        return boardRepository.findAll(pageRequest);
     }
 }

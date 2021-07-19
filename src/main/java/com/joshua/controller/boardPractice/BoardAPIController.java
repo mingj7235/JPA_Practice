@@ -1,10 +1,18 @@
 package com.joshua.controller.boardPractice;
 
+import com.joshua.domain.boardPractice.Board;
 import com.joshua.dto.boardPractice.board.BoardSaveRequestDto;
 import com.joshua.dto.boardPractice.board.BoardUpdateRequestDto;
+import com.joshua.repository.boardPractice.BoardRepository;
 import com.joshua.service.boardPractice.BoardService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
@@ -31,4 +39,23 @@ public class BoardAPIController {
     public void deleteBoard (@PathVariable Long id) {
         boardService.deleteBoard(id);
     }
+
+    @GetMapping ("/board")
+    public String getPage (@RequestParam Integer page) {
+        Page<Board> allBoards = boardService.getAllBoards(page);
+
+        int totalPage = allBoards.getTotalPages();
+        Board board = allBoards.get().findAny()
+                .orElseThrow(() -> new IllegalArgumentException("게시판 없슴"));
+
+        String boardTitle = board.getBoardTitle();
+
+        String result = "";
+        result += "총 페이지 : " + totalPage  + page + "번 첫번째 게시판 이름 " + boardTitle;
+
+        return result;
+    }
+
+
+
 }
